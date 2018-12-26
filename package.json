@@ -1,0 +1,34 @@
+{
+	"name": "proxy.util",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "anzerr",
+	"license": "ISC",
+	"devDependencies": {
+		"eslint": "^5.11.0",
+		"eslint-config-basic": "git+ssh://git@github.com/anzerr/eslintrc.git"
+	},
+	"eslintConfig": {
+		"extends": "eslint-config-basic"
+	},
+	"dependencies": {
+		"http.server": "git+ssh://git@github.com/anzerr/http.server.git"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/undefined.git"
+	},
+	"engines": {
+		"node": ">= 0.10.0"
+	},
+	"types": "index.d.ts",
+	"bugs": {
+		"url": "https://github.com/undefined/issues"
+	},
+	"homepage": "https://github.com/undefined#readme"
+}
