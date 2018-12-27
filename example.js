@@ -1,15 +1,5 @@
 
-### `Intro`
-proxy request to a server transforming the headers or url
-
-#### `Install`
-``` bash
-npm install --save git+ssh://git@github.com/anzerr/proxy.util.git
-```
-
-### `Example`
-``` javascript
-const Proxy = require('proxy.util'),
+const Proxy = require('./index.js'),
 	{Server} = require('http.server');
 
 let proxy = new Proxy('https://www.google.com'),
@@ -27,4 +17,3 @@ http.create((req, res) => {
 }).then(() => {
 	console.log('started server on port', 8080);
 });
-```

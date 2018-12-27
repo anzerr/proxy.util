@@ -2,41 +2,47 @@
 
 const https = require('https'),
 	http = require('http'),
-	url = require('url');
+	url = require('url'),
+	Request = require('./src/request.js');
 
-class Proxy {
+class Proxy extends require('events') {
 
-	constructor(u, format) {
-		let base = u;
-		if (!base.match(/^https*\:\/\//)) {
-			base = 'http://' + base;
-		}
-		this.host = base;
-		this.format = format;
-		this.url = url.parse(base);
+	constructor(uri) {
+		super();
+		this.host = (uri.match(/^https*\:\/\//)) ? uri : 'http://' + uri;
+		this.url = url.parse(this.host);
+		this.isHttps = (this.url.protocol === 'https:');
 		this._headers = {};
-		this._options = {};
-		this.data = {
-			value: '',
-			type: null
-		};
 	}
 
-	handle(req, res) {
-		const isHttps = (this.url.protocol === 'https:'), option = {
+	forward(req, res) {
+		let format = new Request({
 			method: req.method,
 			hostname: this.url.hostname,
-			port: this.url.port || (isHttps ? 443 : 80),
-			path: this.format(req.url),
+			port: this.url.port || (this.isHttps ? 443 : 80),
+			path: req.url,
 			headers: req.headers
-		};
-		option.headers.host = this.url.host;
-
-		let proxy = (isHttps ? https : http).request(option, (r) => {
-			res.writeHead(r.statusCode, r.headers);
-			r.pipe(res);
 		});
-		req.pipe(proxy);
+		this.emit('request', format);
+		return format.finished().then((option) => {
+			console.log('done');
+			return new Promise((resolve, reject) => {
+				option.headers.host = this.url.host;
+				let proxy = (this.isHttps ? https : http).request(option, (r) => {
+					res.writeHead(r.statusCode, r.headers);
+					r.pipe(res);
+					res.on('end', () => {
+						resolve();
+					}).on('error', (e) => {
+						reject(e);
+					});
+				});
+				proxy.on('error', (e) => {
+					reject(e);
+				});
+				req.pipe(proxy);
+			});
+		});
 	}
 
 }
