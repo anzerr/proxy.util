@@ -21,14 +21,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com///github.com/anzerr/proxy.util.git"
+		"url": "git+https://github.com/anzerr/proxy.util.git"
 	},
 	"engines": {
 		"node": ">= 0.10.0"
 	},
 	"types": "index.d.ts",
 	"bugs": {
-		"url": "https://github.com///github.com/anzerr/proxy.util/issues"
+		"url": "https://github.com/anzerr/proxy.util/issues"
 	},
-	"homepage": "https://github.com///github.com/anzerr/proxy.util#readme"
+	"homepage": "https://github.com/anzerr/proxy.util#readme"
 }
