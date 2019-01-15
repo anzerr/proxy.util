@@ -11,7 +11,7 @@ proxy.on('request', (req) => {
 });
 
 proxy.on('header', (res) => {
-	console.log('header url', res.status, res.headers);
+	console.log('header url', res.requestHeaders, res.status, res.headers);
 	res.headers.server = 'proxy';
 	res.done();
 });

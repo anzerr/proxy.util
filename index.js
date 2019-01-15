@@ -37,7 +37,7 @@ class Proxy extends require('events') {
 			return new Promise((resolve, reject) => {
 				option.headers.host = this.url.host;
 				let proxy = (this.isHttps ? https : http).request(option, (r) => {
-					let header = this.hooked('header', new Headers(r.headers, r.statusCode));
+					let header = this.hooked('header', new Headers(req.headers, r.headers, r.statusCode));
 					header.finished().then(() => {
 						res.writeHead(header.status, header.headers);
 						r.pipe(res);

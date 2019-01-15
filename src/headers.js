@@ -1,9 +1,13 @@
 
 class Headers extends require('./hook.js') {
 
-	constructor(headers, status) {
+	constructor(requestHeaders, headers, status) {
 		super();
-		this._data = {headers: headers, status: status};
+		this._data = {headers: headers, status: status, requestHeaders: requestHeaders};
+	}
+
+	get requestHeaders() {
+		return this._data.requestHeaders;
 	}
 
 	set headers(u) {
