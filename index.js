@@ -3,7 +3,8 @@
 const https = require('https'),
 	http = require('http'),
 	url = require('url'),
-	Request = require('./src/request.js');
+	Request = require('./src/request.js'),
+	Headers = require('./src/headers.js');
 
 class Proxy extends require('events') {
 
@@ -15,6 +16,15 @@ class Proxy extends require('events') {
 		this._headers = {};
 	}
 
+	hooked(event, e) {
+		if (this.listenerCount(event) === 0) {
+			e.done();
+		} else {
+			this.emit(event, e);
+		}
+		return e;
+	}
+
 	forward(req, res) {
 		let format = new Request({
 			method: req.method,
@@ -23,14 +33,15 @@ class Proxy extends require('events') {
 			path: req.url,
 			headers: req.headers
 		});
-		this.emit('request', format);
-		return format.finished().then((option) => {
-			console.log('done');
+		return this.hooked('request', format).finished().then((option) => {
 			return new Promise((resolve, reject) => {
 				option.headers.host = this.url.host;
 				let proxy = (this.isHttps ? https : http).request(option, (r) => {
-					res.writeHead(r.statusCode, r.headers);
-					r.pipe(res);
+					let header = this.hooked('header', new Headers(r.headers, r.statusCode));
+					header.finished().then(() => {
+						res.writeHead(header.status, header.headers);
+						r.pipe(res);
+					}).catch(reject);
 					res.on('end', () => {
 						resolve();
 					}).on('error', (e) => {
