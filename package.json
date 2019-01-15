@@ -17,6 +17,7 @@
 		"extends": "eslint-config-basic"
 	},
 	"dependencies": {
+		"clone.util": "git+ssh://git@github.com/anzerr/clone.util.git",
 		"http.server": "git+ssh://git@github.com/anzerr/http.server.git"
 	},
 	"repository": {

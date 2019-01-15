@@ -3,6 +3,7 @@
 const https = require('https'),
 	http = require('http'),
 	url = require('url'),
+	clone = require('clone.util'),
 	Request = require('./src/request.js'),
 	Headers = require('./src/headers.js');
 
@@ -26,13 +27,13 @@ class Proxy extends require('events') {
 	}
 
 	forward(req, res) {
-		let format = new Request({
+		let format = new Request(clone({
 			method: req.method,
 			hostname: this.url.hostname,
 			port: this.url.port || (this.isHttps ? 443 : 80),
 			path: req.url,
 			headers: req.headers
-		});
+		}));
 		return this.hooked('request', format).finished().then((option) => {
 			return new Promise((resolve, reject) => {
 				option.headers.host = this.url.host;
