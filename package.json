@@ -11,14 +11,14 @@
 	"license": "ISC",
 	"devDependencies": {
 		"eslint": "^5.11.0",
-		"eslint-config-basic": "git+http://git@github.com/anzerr/eslintrc.git"
+		"eslint-config-basic": "git+https://git@github.com/anzerr/eslintrc.git"
 	},
 	"eslintConfig": {
 		"extends": "eslint-config-basic"
 	},
 	"dependencies": {
-		"clone.util": "git+http://git@github.com/anzerr/clone.util.git",
-		"http.server": "git+http://git@github.com/anzerr/http.server.git"
+		"clone.util": "git+https://git@github.com/anzerr/clone.util.git",
+		"http.server": "git+https://git@github.com/anzerr/http.server.git"
 	},
 	"repository": {
 		"type": "git",
