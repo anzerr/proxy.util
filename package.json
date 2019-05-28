@@ -1,17 +1,21 @@
 {
 	"name": "proxy.util",
 	"version": "1.0.1",
-	"description": "",
+	"keywords": [],
+	"homepage": "https://github.com/anzerr/proxy.util#readme",
+	"bugs": {
+		"url": "https://github.com/anzerr/proxy.util/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/anzerr/proxy.util.git"
+	},
+	"license": "ISC",
+	"author": "anzerr",
 	"main": "index.js",
+	"types": "index.d.ts",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [],
-	"author": "anzerr",
-	"license": "ISC",
-	"devDependencies": {
-		"eslint": "^5.11.0",
-		"eslint-config-basic": "git+https://git@github.com/anzerr/eslintrc.git"
 	},
 	"eslintConfig": {
 		"extends": "eslint-config-basic"
@@ -20,16 +24,11 @@
 		"clone.util": "git+https://git@github.com/anzerr/clone.util.git",
 		"http.server": "git+https://git@github.com/anzerr/http.server.git"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/anzerr/proxy.util.git"
+	"devDependencies": {
+		"eslint": "^5.11.0",
+		"eslint-config-basic": "git+https://git@github.com/anzerr/eslintrc.git"
 	},
 	"engines": {
 		"node": ">= 0.10.0"
-	},
-	"types": "index.d.ts",
-	"bugs": {
-		"url": "https://github.com/anzerr/proxy.util/issues"
-	},
-	"homepage": "https://github.com/anzerr/proxy.util#readme"
+	}
 }
