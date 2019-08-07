@@ -4,7 +4,8 @@ proxy request to a server transforming the headers or url
 
 #### `Install`
 ``` bash
-npm install --save git+https://git@github.com/anzerr/proxy.util.git
+npm install --save git+https://github.com/anzerr/proxy.util.git
+npm install --save @anzerr/proxy.util
 ```
 
 ### `Example`
