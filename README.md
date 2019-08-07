@@ -1,6 +1,6 @@
 
 ### `Intro`
-proxy request to a server transforming the headers or url
+Proxy request to a server transforming the headers or url
 
 #### `Install`
 ``` bash
