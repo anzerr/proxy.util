@@ -1,5 +1,7 @@
 
 ### `Intro`
+![GitHub Actions status | publish](https://github.com/anzerr/proxy.util/workflows/publish/badge.svg)
+
 Proxy request to a server transforming the headers or url
 
 #### `Install`

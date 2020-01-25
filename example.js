@@ -22,4 +22,7 @@ http.create((req, res) => {
 	});
 }).then(() => {
 	console.log('started server on port', 8080);
+	setTimeout(() => {
+		process.exit(0);
+	}, 5 * 1000);
 });
